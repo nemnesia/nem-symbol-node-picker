@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "nem-symbol-node-picker",
+			"path": "."
+		},
+		{
+			"name": "openapi-client",
+			"path": "openapi-client"
+		},
+		{
+			"name": "typescript",
+			"path": "typescript"
+		}
+	],
+	"settings": {}
+}
