@@ -1,0 +1,73 @@
+{
+  "name": "nem-symbol-node-picker",
+  "version": "1.0.0",
+  "description": "A lightweight Node.js package for picking random NEM and Symbol blockchain nodes from NodeWatch API",
+  "keywords": [
+    "nem",
+    "symbol",
+    "blockchain",
+    "node",
+    "picker",
+    "nodejs"
+  ],
+  "author": "ccHarvestasya",
+  "homepage": "https://github.com/nemnesia/nem-symbol-node-picker#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nemnesia/nem-symbol-node-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nemnesia/nem-symbol-node-picker/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "Apache-2.0",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "volta": {
+    "node": "22.21.0",
+    "npm": "11.6.2",
+    "yarn": "4.10.3"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "build:tsc": "tsc",
+    "build:watch": "rollup -c --watch",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/node": "^24.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "rollup": "^4.52.5",
+    "rollup-plugin-dts": "^6.2.3",
+    "tslib": "^2.8.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
