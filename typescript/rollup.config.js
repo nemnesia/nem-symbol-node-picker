@@ -15,12 +15,14 @@ const config = [
     plugins: [
       nodeResolve({
         preferBuiltins: true,
+        exportConditions: ['es2022', 'es2020', 'es2015', 'node'],
       }),
       typescript({
         tsconfig: './tsconfig.json',
         declaration: false,
         sourceMap: false,
         importHelpers: false,
+        exclude: ['**/*.test.ts', '**/*.spec.ts'],
       }),
     ],
     external: (id) => {

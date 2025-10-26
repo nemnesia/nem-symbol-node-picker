@@ -14,7 +14,9 @@
     "removeComments": true,
     "importHelpers": false,
     "experimentalDecorators": false,
-    "emitDecoratorMetadata": false
+    "emitDecoratorMetadata": false,
+    "importsNotUsedAsValues": "remove",
+    "preserveValueImports": false
   },
   "include": [
     "./src/**/*"
