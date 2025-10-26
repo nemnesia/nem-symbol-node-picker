@@ -123,6 +123,6 @@ npm install && npm run gen:ts
 
 ## 🔗 関連リンク
 
-- [NodeWatch API Documentation](https://nodewatch.symbol.tools)
+- [NodeWatch API Documentation](https://nodewatch.symbol.tools/api/openapi)
 - [Symbol Documentation](https://docs.symbol.dev)
 - [NEM Documentation](https://docs.nem.io)

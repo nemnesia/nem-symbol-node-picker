@@ -123,6 +123,6 @@ Bug reports, feature requests, and pull requests are welcome!
 
 ## 🔗 Related Links
 
-- [NodeWatch API Documentation](https://nodewatch.symbol.tools)
+- [NodeWatch API Documentation](https://nodewatch.symbol.tools/api/openapi)
 - [Symbol Documentation](https://docs.symbol.dev)
 - [NEM Documentation](https://docs.nem.io)
