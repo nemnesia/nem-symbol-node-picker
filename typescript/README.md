@@ -12,7 +12,7 @@ A lightweight Node.js and browser package for picking random NEM and Symbol bloc
 - 🛡️ **Resilient**: Automatic failover between NodeWatch instances
 - ⏰ **Timeout Protection**: 5-second timeout with cleanup
 - 🌐 **Cross-Platform**: Works in Node.js and browsers
-- 📦 **Lightweight**: <2KB minified + gzipped
+- 📦 **Lightweight**: ~3KB minified + gzipped
 - 🔧 **TypeScript**: Full type support included
 
 ## Installation
@@ -129,11 +129,3 @@ The package includes built-in caching with a 1-minute duration to:
 ## License
 
 Licensed under the Apache License 2.0. See [LICENSE](./LICENSE) for details.
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
