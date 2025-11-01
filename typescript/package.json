@@ -11,7 +11,7 @@
     "nodejs"
   ],
   "author": "ccHarvestasya",
-  "homepage": "https://github.com/nemnesia/nem-symbol-node-picker#readme",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nemnesia/nem-symbol-node-picker.git"
@@ -19,19 +19,15 @@
   "bugs": {
     "url": "https://github.com/nemnesia/nem-symbol-node-picker/issues"
   },
-  "type": "module",
+  "homepage": "https://github.com/nemnesia/nem-symbol-node-picker#readme",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "license": "Apache-2.0",
   "files": [
     "dist/**/*",
     "README.md",
     "LICENSE"
   ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -40,11 +36,15 @@
     }
   },
   "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "volta": {
     "node": "22.21.0",
     "npm": "11.6.2",
     "yarn": "4.10.3"
   },
+  "type": "module",
   "scripts": {
     "build": "shx rm -rf dist && rollup -c",
     "build:tsc": "tsc -p tsconfig.build.json",
