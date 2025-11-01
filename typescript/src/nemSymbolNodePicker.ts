@@ -103,7 +103,7 @@ async function _symbolNodePicker(network: 'mainnet' | 'testnet', count: number, 
   // フィルタリング
   const filteredNodes = nodes
     .filter((node) => node.height >= heightInfo!.height)
-    .filter((node) => (isSsl ? node.endpoint.startsWith('https') : true));
+    .filter((node) => (node.isSslEnabled ?? false));
   // ランダムに取得する
   const randomNodes = filteredNodes.sort(() => 0.5 - Math.random()).slice(0, count);
 
@@ -176,7 +176,7 @@ async function _nemNodePicker(network: 'mainnet' | 'testnet', count: number, isS
   // フィルタリング
   const filteredNodes = nodes
     .filter((node) => node.height >= heightInfo!.height)
-    .filter((node) => (isSsl ? node.endpoint.startsWith('https') : true));
+    .filter((node) => (node.isSslEnabled ?? false));
   // ランダムに取得する
   const randomNodes = filteredNodes.sort(() => 0.5 - Math.random()).slice(0, count);
 

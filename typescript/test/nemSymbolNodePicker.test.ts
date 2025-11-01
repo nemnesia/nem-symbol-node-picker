@@ -109,8 +109,8 @@ describe('nemSymbolNodePicker - モックテスト', () => {
     symbolCache.set('mainnet_true', {
       heightInfo: { height: 100, finalizedHeight: 100 },
       nodes: [
-        { height: 100, endpoint: 'https://ssl1' },
-        { height: 100, endpoint: 'https://ssl2' },
+        { height: 100, endpoint: 'https://ssl1', isSslEnabled: true },
+        { height: 100, endpoint: 'https://ssl2', isSslEnabled: true },
       ],
       timestamp: Date.now(),
       baseUrl: 'mock',
@@ -129,8 +129,9 @@ describe('nemSymbolNodePicker - モックテスト', () => {
           getSymbolHeight: () => Promise.resolve({ height: 100 }),
           getSymbolPeerNodes: () =>
             Promise.resolve([
-              { height: 100, endpoint: 'https://ssl1' },
-              { height: 100, endpoint: 'http://nonssl' },
+              { height: 100, endpoint: 'https://ssl1', isSslEnabled: true },
+              { height: 100, endpoint: 'http://nonssl1', isSslEnabled: false },
+              { height: 100, endpoint: 'http://nonssl2', isSslEnabled: null },
             ]),
         };
       },
@@ -139,8 +140,9 @@ describe('nemSymbolNodePicker - モックテスト', () => {
           getNemHeight: () => Promise.resolve({ height: 100 }),
           getNemNodes: () =>
             Promise.resolve([
-              { height: 100, endpoint: 'https://ssl1' },
-              { height: 100, endpoint: 'http://nonssl' },
+              { height: 100, endpoint: 'https://ssl1', isSslEnabled: true },
+              { height: 100, endpoint: 'http://nonssl1', isSslEnabled: false },
+              { height: 100, endpoint: 'http://nonssl2', isSslEnabled: null },
             ]),
         };
       },
@@ -169,8 +171,9 @@ describe('nemSymbolNodePicker - モックテスト', () => {
           getNemHeight: () => Promise.resolve({ height: 100 }),
           getNemNodes: () =>
             Promise.resolve([
-              { height: 100, endpoint: 'https://nemssl' },
-              { height: 99, endpoint: 'https://nemold' },
+              { height: 100, endpoint: 'https://nemssl', isSslEnabled: true },
+              { height: 99, endpoint: 'https://nemold1', isSslEnabled: false },
+              { height: 99, endpoint: 'https://nemold2', isSslEnabled: null },
             ]),
         };
       },
@@ -204,8 +207,8 @@ describe('nemSymbolNodePicker - モックテスト', () => {
     nemCache.set('mainnet_true', {
       heightInfo: { height: 100, finalizedHeight: 100 },
       nodes: [
-        { height: 100, endpoint: 'https://nemssl' },
-        { height: 100, endpoint: 'https://nemssl2' },
+        { height: 100, endpoint: 'https://nemssl', isSslEnabled: true },
+        { height: 100, endpoint: 'https://nemssl2', isSslEnabled: true },
       ],
       timestamp: Date.now(),
       baseUrl: 'mock',
