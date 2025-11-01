@@ -2,6 +2,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
+import filesize from 'rollup-plugin-filesize';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const config = [
   // ES Module build
@@ -18,11 +20,17 @@ const config = [
         exportConditions: ['es2022', 'es2020', 'es2015', 'node'],
       }),
       typescript({
-        tsconfig: './tsconfig.json',
+        tsconfig: './tsconfig.build.json',
         declaration: false,
         sourceMap: false,
         importHelpers: false,
         exclude: ['**/*.test.ts', '**/*.spec.ts'],
+      }),
+      filesize(),
+      terser(),
+      visualizer({
+        filename: 'stats.html',
+        open: true,
       }),
     ],
     external: (id) => {
