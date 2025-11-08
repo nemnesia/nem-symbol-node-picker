@@ -115,8 +115,8 @@ This package uses the [NodeWatch API](https://nodewatch.symbol.tools/api/openapi
 
 **Supported NodeWatch instances:**
 
-- Mainnet: `https://sse.nemnesia.com`, `https://nodewatch.symbol.tools`
-- Testnet: `https://testnet.sse.nemnesia.com`, `https://nodewatch.symbol.tools/testnet`
+- Mainnet: `https://sse.nemnesia.com`
+- Testnet: `https://testnet.sse.nemnesia.com`
 
 ## Caching
 

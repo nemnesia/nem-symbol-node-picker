@@ -1,8 +1,8 @@
 import { Configuration, HeightInfo, NEMNodesApi, SymbolNodesApi } from './openapi-client';
 
 // NodeWatchのURLリスト
-export const nodewatchMainnetUrls = ['https://sse.nemnesia.com', 'https://nodewatch.symbol.tools'];
-export const nodewatchTestnetUrls = ['https://testnet.sse.nemnesia.com', 'https://nodewatch.symbol.tools/testnet'];
+export const nodewatchMainnetUrls = ['https://sse.nemnesia.com'];
+export const nodewatchTestnetUrls = ['https://testnet.sse.nemnesia.com'];
 
 // キャッシュ機能
 interface CacheEntry {
@@ -103,7 +103,7 @@ async function _symbolNodePicker(network: 'mainnet' | 'testnet', count: number, 
   // フィルタリング
   const filteredNodes = nodes
     .filter((node) => node.height >= heightInfo!.height)
-    .filter((node) => (node.isSslEnabled ?? false));
+    .filter((node) => node.isSslEnabled ?? false);
   // ランダムに取得する
   const randomNodes = filteredNodes.sort(() => 0.5 - Math.random()).slice(0, count);
 
@@ -176,7 +176,7 @@ async function _nemNodePicker(network: 'mainnet' | 'testnet', count: number, isS
   // フィルタリング
   const filteredNodes = nodes
     .filter((node) => node.height >= heightInfo!.height)
-    .filter((node) => (node.isSslEnabled ?? false));
+    .filter((node) => node.isSslEnabled ?? false);
   // ランダムに取得する
   const randomNodes = filteredNodes.sort(() => 0.5 - Math.random()).slice(0, count);
 

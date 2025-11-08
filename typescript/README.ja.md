@@ -115,8 +115,8 @@ try {
 
 **対応NodeWatchインスタンス:**
 
-- メインネット: `https://sse.nemnesia.com`, `https://nodewatch.symbol.tools`
-- テストネット: `https://testnet.sse.nemnesia.com`, `https://nodewatch.symbol.tools/testnet`
+- メインネット: `https://sse.nemnesia.com`
+- テストネット: `https://testnet.sse.nemnesia.com`
 
 ## キャッシュ機能
 
