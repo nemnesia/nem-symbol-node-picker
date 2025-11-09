@@ -37,7 +37,7 @@
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "volta": {
     "node": "22.21.0",
