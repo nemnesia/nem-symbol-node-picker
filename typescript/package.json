@@ -11,7 +11,7 @@
     "nodejs"
   ],
   "author": "ccHarvestasya",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nemnesia/nem-symbol-node-picker.git"
