@@ -1,112 +1,26 @@
 # NEM/Symbol Node Picker
 
-**NEM/Symbol Node Picker** は、NodeWatch API から利用可能な NEM および Symbol ブロックチェーンノードをランダムに取得するための軽量なパッケージとツールセットです。
+**NEM/Symbol Node Picker** は、NodeWatch API から利用可能な NEM および Symbol ブロックチェーンノードをランダムに取得するための軽量な Node.js パッケージです。
 
-## 📁 プロジェクト構成
-
-このリポジトリには以下のコンポーネントが含まれています：
-
-```
-nem-symbol-node-picker/
-├── typescript/              # Node.js/Browser用TypeScriptパッケージ
-│   ├── src/                 # ソースコード
-│   ├── dist/                # ビルド済みファイル
-│   └── package.json         # NPMパッケージ設定
-├── openapi-client/          # OpenAPIクライアント生成ツール
-│   ├── openapi.yaml         # NodeWatch API仕様
-│   └── openapitools.json    # OpenAPI Generator設定
-└── python/                  # Python実装（開発中）
-```
-
-## 🚀 主要機能
+## 🚀 機能
 
 - **⚡ 高速**: 複数の NodeWatch エンドポイントへの並列リクエスト
-- **💾 キャッシュ機能**: 1 分間のキャッシュで API 呼び出しを削減
-- **🛡️ 冗長性**: NodeWatch インスタンス間の自動フェイルオーバー
-- **⏰ タイムアウト保護**: 5 秒のタイムアウトとクリーンアップ
-- **🌐 クロスプラットフォーム**: Node.js とブラウザで動作
-- **📦 軽量**: minified + gzipped で ~3KB
-- **🔧 TypeScript**: 完全な型サポート
+- **💾 スマートキャッシュ**: 1 分間のインテリジェントキャッシュでパフォーマンス最適化
+- **🛡️ 冗長性**: 複数の NodeWatch インスタンス間での自動フェイルオーバー
+- **⏰ タイムアウト保護**: 5 秒のタイムアウトとクリーンアップ機能を内蔵
+- **🌐 汎用性**: Node.js とモダンブラウザでシームレスに動作
+- **📦 軽量**: minified + gzipped で わずか ~3KB
+- **🔧 TypeScript**: 包括的な型定義による完全な TypeScript サポート
 
-## 📦 コンポーネント
+## 🌐 サポートされるネットワーク
 
-### TypeScript/Node.js パッケージ
+- **Symbol**: メインネットおよびテストネット
+- **NEM**: メインネットおよびテストネット
 
-- **パッケージ名**: `nem-symbol-node-picker`
-- **場所**: `typescript/` ディレクトリ
-- **機能**: NEM/Symbol ノードをランダムに取得するメイン機能
-- **詳細**: [typescript/README.md](typescript/README.md) を参照
+## 🛠️ 要件
 
-### OpenAPI クライアント生成
-
-- **場所**: `openapi-client/` ディレクトリ
-- **機能**: NodeWatch API 仕様から多言語クライアントを生成
-- **対応言語**: TypeScript, Python, PHP, Dart
-
-### Python 実装
-
-- **場所**: `python/` ディレクトリ
-- **ステータス**: 開発中
-
-## 🔧 NodeWatch API
-
-NodeWatch API は以下のエンドポイントを提供します：
-
-#### NEM ノード
-
-- `GET /api/nem/nodes` - 既知の NEM ノードリストを取得
-- `GET /api/nem/height` - NEM ブロックチェーンの高さ情報を取得
-
-#### Symbol ノード
-
-- `GET /api/symbol/nodes` - 既知の Symbol ノードリストを取得
-- `GET /api/symbol/height` - Symbol ブロックチェーンの高さ情報を取得
-- `GET /api/symbol/statistics` - Symbol ネットワーク統計を取得
-- `GET /api/symbol/time-series/nodes-count` - ノード数の時系列データを取得
-
-## 🌐 NodeWatch エンドポイント
-
-以下の NodeWatch インスタンスを利用しています：
-
-### メインネット
-
-- `https://sse.nemnesia.com`
-- `https://nodewatch.symbol.tools`
-
-### テストネット
-
-- `https://testnet.sse.nemnesia.com`
-- `https://nodewatch.symbol.tools/testnet`
-
-## ⚡ パフォーマンス
-
-- **キャッシュ**: 1 分間のメモリキャッシュで重複リクエストを回避
-- **並列処理**: 複数の NodeWatch インスタンスに同時リクエスト
-- **フェイルオーバー**: 利用可能な最初のレスポンスを使用
-- **タイムアウト**: 5 秒でリクエストをタイムアウト
-
-## 🛠️ 開発環境
-
-### 前提条件
-
-- Node.js 18 以上
-- npm または yarn
-
-### クイックスタート
-
-```bash
-# リポジトリをクローン
-git clone https://github.com/nemnesia/nem-symbol-node-picker.git
-cd nem-symbol-node-picker
-
-# TypeScriptパッケージのビルドとテスト
-cd typescript
-npm install && npm run build && npm test
-
-# OpenAPIクライアント生成（オプション）
-cd ../openapi-client
-npm install && npm run gen:ts
-```
+- **Node.js**: 18.0.0 以上
+- **ブラウザ**: ES2022 をサポートするモダンブラウザ
 
 ## 📄 ライセンス
 

@@ -1,112 +1,26 @@
 # NEM/Symbol Node Picker
 
-**NEM/Symbol Node Picker** is a lightweight package and toolset for randomly picking available NEM and Symbol blockchain nodes from the NodeWatch API.
+**NEM/Symbol Node Picker** is a lightweight Node.js package for randomly selecting available NEM and Symbol blockchain nodes from the NodeWatch API.
 
-## 📁 Project Structure
-
-This repository contains the following components:
-
-```
-nem-symbol-node-picker/
-├── typescript/              # TypeScript package for Node.js/Browser
-│   ├── src/                 # Source code
-│   ├── dist/                # Built files
-│   └── package.json         # NPM package configuration
-├── openapi-client/          # OpenAPI client generation tools
-│   ├── openapi.yaml         # NodeWatch API specification
-│   └── openapitools.json    # OpenAPI Generator configuration
-└── python/                  # Python implementation (in development)
-```
-
-## 🚀 Key Features
+## 🚀 Features
 
 - **⚡ Fast**: Concurrent requests to multiple NodeWatch endpoints
-- **💾 Caching**: 1-minute caching to reduce API calls
-- **🛡️ Resilient**: Automatic failover between NodeWatch instances
-- **⏰ Timeout Protection**: 5-second timeout with cleanup
-- **🌐 Cross-Platform**: Works in Node.js and browsers
-- **📦 Lightweight**: ~3KB minified + gzipped
-- **🔧 TypeScript**: Full type support
+- **💾 Smart Caching**: 1-minute intelligent caching to optimize performance
+- **🛡️ Resilient**: Automatic failover between multiple NodeWatch instances
+- **⏰ Timeout Protection**: Built-in 5-second timeout with proper cleanup
+- **🌐 Universal**: Works seamlessly in Node.js and modern browsers
+- **📦 Lightweight**: Only ~3KB minified + gzipped
+- **🔧 TypeScript**: Full TypeScript support with comprehensive type definitions
 
-## 📦 Components
+## 🌐 Supported Networks
 
-### TypeScript/Node.js Package
+- **Symbol**: Mainnet and Testnet
+- **NEM**: Mainnet and Testnet
 
-- **Package Name**: `nem-symbol-node-picker`
-- **Location**: `typescript/` directory
-- **Function**: Main functionality for randomly picking NEM/Symbol nodes
-- **Details**: See [typescript/README.md](typescript/README.md)
+## 🛠️ Requirements
 
-### OpenAPI Client Generation
-
-- **Location**: `openapi-client/` directory
-- **Function**: Generate multi-language clients from NodeWatch API specification
-- **Supported Languages**: TypeScript, Python, PHP, Dart
-
-### Python Implementation
-
-- **Location**: `python/` directory
-- **Status**: In development
-
-## 🔧 NodeWatch API
-
-NodeWatch API provides the following endpoints:
-
-#### NEM Nodes
-
-- `GET /api/nem/nodes` - Get list of known NEM nodes
-- `GET /api/nem/height` - Get NEM blockchain height information
-
-#### Symbol Nodes
-
-- `GET /api/symbol/nodes` - Get list of known Symbol nodes
-- `GET /api/symbol/height` - Get Symbol blockchain height information
-- `GET /api/symbol/statistics` - Get Symbol network statistics
-- `GET /api/symbol/time-series/nodes-count` - Get time-series data of node count
-
-## 🌐 NodeWatch Endpoints
-
-The following NodeWatch instances are utilized:
-
-### Mainnet
-
-- `https://sse.nemnesia.com`
-- `https://nodewatch.symbol.tools`
-
-### Testnet
-
-- `https://testnet.sse.nemnesia.com`
-- `https://nodewatch.symbol.tools/testnet`
-
-## ⚡ Performance
-
-- **Caching**: 1-minute memory cache to avoid duplicate requests
-- **Parallel Processing**: Concurrent requests to multiple NodeWatch instances
-- **Failover**: Use the first available response
-- **Timeout**: 5-second request timeout
-
-## 🛠️ Development Environment
-
-### Prerequisites
-
-- Node.js 18 or higher
-- npm or yarn
-
-### Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/nemnesia/nem-symbol-node-picker.git
-cd nem-symbol-node-picker
-
-# Build and test TypeScript package
-cd typescript
-npm install && npm run build && npm test
-
-# Generate OpenAPI clients (optional)
-cd ../openapi-client
-npm install && npm run gen:ts
-```
+- **Node.js**: 18.0.0 or higher
+- **Browser**: Modern browsers with ES2022 support
 
 ## 📄 License
 
