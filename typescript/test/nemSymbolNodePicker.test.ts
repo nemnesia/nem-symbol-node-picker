@@ -15,11 +15,19 @@ describe('nemSymbolNodePicker - 基本テスト', () => {
 
 // 引数バリデーションのテスト（実際のAPIを呼ばない）
 describe('nemSymbolNodePicker - 引数テスト', () => {
-  it('0件の取得では早期リターンする', async () => {
-    // このテストはAPI呼び出し前に早期リターンするはず
+  it('0件の取得ではエラーを投げる', async () => {
     const { nemSymbolNodePicker } = await import('../src/nemSymbolNodePicker.js');
-    const result = await nemSymbolNodePicker('symbol', 'mainnet', 0);
-    expect(result).toEqual([]);
+    await expect(nemSymbolNodePicker('symbol', 'mainnet', 0)).rejects.toThrow('Count must be a positive integer');
+  });
+
+  it('負の値ではエラーを投げる', async () => {
+    const { nemSymbolNodePicker } = await import('../src/nemSymbolNodePicker.js');
+    await expect(nemSymbolNodePicker('symbol', 'mainnet', -1)).rejects.toThrow('Count must be a positive integer');
+  });
+
+  it('小数点ではエラーを投げる', async () => {
+    const { nemSymbolNodePicker } = await import('../src/nemSymbolNodePicker.js');
+    await expect(nemSymbolNodePicker('symbol', 'mainnet', 1.5)).rejects.toThrow('Count must be a positive integer');
   });
 });
 
@@ -50,36 +58,6 @@ describe('nemSymbolNodePicker - モックテスト', () => {
     const { nemSymbolNodePicker } = await import('../src/nemSymbolNodePicker.js');
 
     await expect(nemSymbolNodePicker('symbol', 'mainnet', 1)).rejects.toThrow('No available NodeWatch found.');
-  });
-
-  it('NodeWatchのURLリスト長不一致でエラー', async () => {
-    vi.doMock('../src/openapi-client', () => ({
-      Configuration: function () {
-        return {};
-      },
-      SymbolNodesApi: function () {
-        return {
-          getSymbolHeight: () => Promise.resolve({ height: 100 }),
-          getSymbolPeerNodes: () => Promise.resolve([]),
-        };
-      },
-      NEMNodesApi: function () {
-        return {
-          getNemHeight: () => Promise.resolve({ height: 100 }),
-          getNemNodes: () => Promise.resolve([]),
-        };
-      },
-    }));
-    vi.resetModules();
-    // NodeWatchのURLリストを強制的に不一致にする
-    const { nodewatchTestnetUrls } = await import('../src/nemSymbolNodePicker.js');
-    nodewatchTestnetUrls.push('dummy');
-    const { nemSymbolNodePicker } = await import('../src/nemSymbolNodePicker.js');
-    await expect(nemSymbolNodePicker('symbol', 'mainnet', 1)).rejects.toThrow(
-      'NodeWatch mainnet and testnet URL lists have different lengths.'
-    );
-    // 復元
-    nodewatchTestnetUrls.pop();
   });
 
   it('キャッシュヒット時はAPIを呼ばない', async () => {

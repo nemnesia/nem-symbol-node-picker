@@ -1,27 +1,38 @@
 import { Configuration, HeightInfo, NEMNodesApi, SymbolNodesApi } from './openapi-client';
 
-// NodeWatchのURLリスト
+/** NodeWatch メインネット用URLリスト */
 export const nodewatchMainnetUrls = ['https://sse.nemnesia.com'];
+/** NodeWatch テストネット用URLリスト */
 export const nodewatchTestnetUrls = ['https://testnet.sse.nemnesia.com'];
 
-// キャッシュ機能
+/** ノードエントリのインターフェース */
+interface NodeEntry {
+  height: number;
+  endpoint: string;
+  isSslEnabled: boolean | null;
+}
+
+/** キャッシュエントリのインターフェース */
 interface CacheEntry {
   heightInfo: HeightInfo;
-  nodes: any[];
+  nodes: NodeEntry[];
   timestamp: number;
   baseUrl: string;
 }
 
 export const symbolCache = new Map<string, CacheEntry>(); // Symbolノード用キャッシュ
 export const nemCache = new Map<string, CacheEntry>(); // NEMノード用キャッシュ
+
+// 設定値
 const CACHE_DURATION = 60000; // 1分間キャッシュ
+const REQUEST_TIMEOUT_MS = 5000; // リクエストタイムアウト (5秒)
 
 /**
  * タイムアウト機能付きのリクエスト関数（クリーンアップ対応）
  * @param promise リクエストのPromise
  * @param timeoutMs timeout時間（ミリ秒）
  */
-async function _fetchWithTimeout(promise: Promise<any>, timeoutMs: number = 5000): Promise<any> {
+async function _fetchWithTimeout(promise: Promise<any>, timeoutMs: number = REQUEST_TIMEOUT_MS): Promise<any> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   const timeoutPromise = new Promise<never>((_, reject) => {
     timeoutId = setTimeout(() => reject(new Error('Request timeout')), timeoutMs);
@@ -44,12 +55,7 @@ async function _fetchWithTimeout(promise: Promise<any>, timeoutMs: number = 5000
  * @param isSsl SSLのみ取得するか
  * @returns ノードのエンドポイント配列
  */
-async function _symbolNodePicker(network: 'mainnet' | 'testnet', count: number, isSsl: boolean): Promise<any[]> {
-  // メインネットとテストネットのNodeWatchのURLリスト数は同じであること
-  if (nodewatchMainnetUrls.length !== nodewatchTestnetUrls.length) {
-    throw new Error('NodeWatch mainnet and testnet URL lists have different lengths.');
-  }
-
+async function _symbolNodePicker(network: 'mainnet' | 'testnet', count: number, isSsl: boolean): Promise<string[]> {
   // キャッシュチェック
   const cacheKey = `${network}_${isSsl}`;
   const cachedEntry = symbolCache.get(cacheKey);
@@ -77,12 +83,12 @@ async function _symbolNodePicker(network: 'mainnet' | 'testnet', count: number, 
 
         return { heightInfo, nodes, baseUrl };
       } catch (error) {
-        throw new Error(`Failed to connect to ${baseUrl}: ${error}`);
+        throw new Error(`Failed to connect to ${baseUrl}: ${error instanceof Error ? error.message : String(error)}`);
       }
     });
 
     // 最初に成功したNodeWatchの結果を使用
-    let successfulResult: { heightInfo: HeightInfo; nodes: any[]; baseUrl: string } | null = null;
+    let successfulResult: { heightInfo: HeightInfo; nodes: NodeEntry[]; baseUrl: string } | null = null;
 
     try {
       successfulResult = await Promise.any(nodeWatchPromises);
@@ -101,9 +107,11 @@ async function _symbolNodePicker(network: 'mainnet' | 'testnet', count: number, 
     });
   }
   // フィルタリング
-  const filteredNodes = nodes
-    .filter((node) => node.height >= heightInfo!.height)
-    .filter((node) => node.isSslEnabled ?? false);
+  let filteredNodes = nodes.filter((node) => node.height >= heightInfo!.height);
+
+  if (isSsl) {
+    filteredNodes = filteredNodes.filter((node) => node.isSslEnabled === true);
+  }
   // ランダムに取得する
   const randomNodes = filteredNodes.sort(() => 0.5 - Math.random()).slice(0, count);
 
@@ -117,12 +125,7 @@ async function _symbolNodePicker(network: 'mainnet' | 'testnet', count: number, 
  * @param isSsl SSLのみ取得するか
  * @returns ノードのエンドポイント配列
  */
-async function _nemNodePicker(network: 'mainnet' | 'testnet', count: number, isSsl: boolean): Promise<any[]> {
-  // メインネットとテストネットのNodeWatchのURLリスト数は同じであること
-  if (nodewatchMainnetUrls.length !== nodewatchTestnetUrls.length) {
-    throw new Error('NodeWatch mainnet and testnet URL lists have different lengths.');
-  }
-
+async function _nemNodePicker(network: 'mainnet' | 'testnet', count: number, isSsl: boolean): Promise<string[]> {
   // キャッシュチェック
   const cacheKey = `${network}_${isSsl}`;
   const cachedEntry = nemCache.get(cacheKey);
@@ -150,12 +153,12 @@ async function _nemNodePicker(network: 'mainnet' | 'testnet', count: number, isS
 
         return { heightInfo, nodes, baseUrl };
       } catch (error) {
-        throw new Error(`Failed to connect to ${baseUrl}: ${error}`);
+        throw new Error(`Failed to connect to ${baseUrl}: ${error instanceof Error ? error.message : String(error)}`);
       }
     });
 
     // 最初に成功したNodeWatchの結果を使用
-    let successfulResult: { heightInfo: HeightInfo; nodes: any[]; baseUrl: string } | null = null;
+    let successfulResult: { heightInfo: HeightInfo; nodes: NodeEntry[]; baseUrl: string } | null = null;
 
     try {
       successfulResult = await Promise.any(nodeWatchPromises);
@@ -174,9 +177,11 @@ async function _nemNodePicker(network: 'mainnet' | 'testnet', count: number, isS
     });
   }
   // フィルタリング
-  const filteredNodes = nodes
-    .filter((node) => node.height >= heightInfo!.height)
-    .filter((node) => node.isSslEnabled ?? false);
+  let filteredNodes = nodes.filter((node) => node.height >= heightInfo!.height);
+
+  if (isSsl) {
+    filteredNodes = filteredNodes.filter((node) => node.isSslEnabled === true);
+  }
   // ランダムに取得する
   const randomNodes = filteredNodes.sort(() => 0.5 - Math.random()).slice(0, count);
 
@@ -197,6 +202,11 @@ export async function nemSymbolNodePicker(
   count: number = 1,
   isSsl: boolean = false
 ): Promise<string[]> {
+  // バリデーション: countは正の整数である必要がある
+  if (count <= 0 || !Number.isInteger(count)) {
+    throw new Error('Count must be a positive integer');
+  }
+
   let result: string[];
 
   if (chainName === 'symbol') {
