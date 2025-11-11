@@ -23,7 +23,7 @@ const config = [
         tsconfig: './tsconfig.build.json',
         declaration: false,
         sourceMap: false,
-        importHelpers: false,
+        importHelpers: true,
         exclude: ['**/*.test.ts', '**/*.spec.ts'],
       }),
       filesize(),
@@ -55,7 +55,7 @@ const config = [
         tsconfig: './tsconfig.json',
         declaration: false,
         sourceMap: false,
-        importHelpers: false,
+        importHelpers: true,
       }),
     ],
     external: (id) => {
@@ -78,7 +78,7 @@ const config = [
         tsconfig: './tsconfig.json',
         declaration: false,
         sourceMap: false,
-        importHelpers: false,
+        importHelpers: true,
       }),
       terser({
         compress: {

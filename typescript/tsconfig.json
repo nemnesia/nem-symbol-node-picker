@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "removeComments": true,
-    "importHelpers": false,
+    "importHelpers": true,
     "experimentalDecorators": false,
     "emitDecoratorMetadata": false,
     "importsNotUsedAsValues": "remove",
