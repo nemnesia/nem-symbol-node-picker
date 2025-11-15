@@ -456,6 +456,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nemnesia/nodewatch-openapi-fetch-client@portal:../../nodewatch-openapi-fetch-client/typescript::locator=nem-symbol-node-picker%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@nemnesia/nodewatch-openapi-fetch-client@portal:../../nodewatch-openapi-fetch-client/typescript::locator=nem-symbol-node-picker%40workspace%3A."
+  languageName: node
+  linkType: soft
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -3135,6 +3141,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nem-symbol-node-picker@workspace:."
   dependencies:
+    "@nemnesia/nodewatch-openapi-fetch-client": "portal:../../nodewatch-openapi-fetch-client/typescript"
     "@rollup/plugin-node-resolve": "npm:^16.0.3"
     "@rollup/plugin-terser": "npm:^0.4.4"
     "@rollup/plugin-typescript": "npm:^12.3.0"

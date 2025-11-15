@@ -5,8 +5,8 @@
 			"path": "."
 		},
 		{
-			"name": "openapi-client",
-			"path": "openapi-client"
+			"name": "nodewatch-openapi-fetch-client",
+			"path": "../nodewatch-openapi-fetch-client"
 		},
 		{
 			"name": "typescript",

@@ -35,7 +35,7 @@ describe('nemSymbolNodePicker - 引数テスト', () => {
 describe('nemSymbolNodePicker - モックテスト', () => {
   it('APIエラー時に適切にエラーを処理する', async () => {
     // モックを正しく設定
-    vi.doMock('../src/openapi-client', () => ({
+    vi.doMock('@nemnesia/nodewatch-openapi-fetch-client', () => ({
       Configuration: function () {
         return {};
       },
@@ -61,7 +61,7 @@ describe('nemSymbolNodePicker - モックテスト', () => {
   });
 
   it('キャッシュヒット時はAPIを呼ばない', async () => {
-    vi.doMock('../src/openapi-client', () => ({
+    vi.doMock('@nemnesia/nodewatch-openapi-fetch-client', () => ({
       Configuration: function () {
         return {};
       },
@@ -98,7 +98,7 @@ describe('nemSymbolNodePicker - モックテスト', () => {
   });
 
   it('SSLフィルタが有効な場合のみhttpsを返す', async () => {
-    vi.doMock('../src/openapi-client', () => ({
+    vi.doMock('@nemnesia/nodewatch-openapi-fetch-client', () => ({
       Configuration: function () {
         return {};
       },
@@ -134,7 +134,7 @@ describe('nemSymbolNodePicker - モックテスト', () => {
   });
 
   it('NEMチェーン分岐も正常に動作する', async () => {
-    vi.doMock('../src/openapi-client', () => ({
+    vi.doMock('@nemnesia/nodewatch-openapi-fetch-client', () => ({
       Configuration: function () {
         return {};
       },
@@ -163,7 +163,7 @@ describe('nemSymbolNodePicker - モックテスト', () => {
   });
 
   it('NEMチェーンでキャッシュヒット時はAPIを呼ばない', async () => {
-    vi.doMock('../src/openapi-client', () => ({
+    vi.doMock('@nemnesia/nodewatch-openapi-fetch-client', () => ({
       Configuration: function () {
         return {};
       },
@@ -196,7 +196,7 @@ describe('nemSymbolNodePicker - モックテスト', () => {
   });
 
   it('NEMチェーンでPromise.any失敗時はエラー', async () => {
-    vi.doMock('../src/openapi-client', () => ({
+    vi.doMock('@nemnesia/nodewatch-openapi-fetch-client', () => ({
       Configuration: function () {
         return {};
       },

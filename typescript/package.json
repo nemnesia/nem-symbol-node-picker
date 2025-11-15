@@ -40,9 +40,8 @@
     "node": ">=18.0.0"
   },
   "volta": {
-    "node": "22.21.0",
-    "npm": "11.6.2",
-    "yarn": "4.10.3"
+    "node": "22.21.1",
+    "yarn": "4.11.0"
   },
   "type": "module",
   "scripts": {
@@ -52,14 +51,15 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint \"{src,test,e2e}/**/*.ts\" --fix",
     "format": "prettier --write \"{src,test,e2e}/**/*.ts\"",
-    "test": "vitest run",
+    "test": "vitest run test",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "vitest run e2e",
     "test:e2e:watch": "vitest --watch e2e",
     "test:all": "vitest run && vitest run e2e",
     "publish:dryrun": "npm publish --dry-run",
-    "publish:release": "npm run build && npm publish"
+    "publish:release": "npm run build && npm publish",
+    "install:local-module": "yarn add @nemnesia/nodewatch-openapi-fetch-client@portal:../../nodewatch-openapi-fetch-client/typescript"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.3",
@@ -82,5 +82,8 @@
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "vitest": "^4.0.8"
+  },
+  "dependencies": {
+    "@nemnesia/nodewatch-openapi-fetch-client": "portal:../../nodewatch-openapi-fetch-client/typescript"
   }
 }

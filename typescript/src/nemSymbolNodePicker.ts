@@ -1,4 +1,4 @@
-import { Configuration, HeightInfo, NEMNodesApi, SymbolNodesApi } from './openapi-client';
+import { Configuration, HeightInfo, NEMNodesApi, SymbolNodesApi } from '@nemnesia/nodewatch-openapi-fetch-client';
 
 /** NodeWatch メインネット用URLリスト */
 export const nodewatchMainnetUrls = ['https://sse.nemnesia.com'];
